@@ -1,0 +1,20 @@
+.star-frame {
+    position: relative;
+}
+.star::before,
+.star1::before {
+    content: "\2605";
+    display: inline-block;
+    margin: 5px;
+    font-size: 35px;
+    color: #ccc;
+}
+
+/* .star:hover::before {
+    color: rgb(243 243 28);
+} */
+
+.star.selected::before,
+.star1.selected::before {
+    color: rgb(243 243 28);
+}

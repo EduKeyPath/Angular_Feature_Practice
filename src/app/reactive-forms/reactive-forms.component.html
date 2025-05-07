@@ -1,0 +1,120 @@
+<h5>Angular 14 strictly Type Forms</h5>
+
+<form [formGroup]="strictForm" (ngSubmit)="strictFormSubmit()">
+    <label>
+        Name : <input type="text" formControlName="name" required />
+        <!-- <small *ngIf="strictForm.get('name')?.invalid && strictForm.get('name')?.touched">Name is required</small> -->
+    </label>
+    <br/>
+    <label>
+        Email : <input type="text" formControlName="email" required />
+    </label>
+    <br/>
+    <label>
+        Mobile : <input type="text" formControlName="mobile" required />
+    </label>
+    <br/>
+    <button [disabled]="strictForm.invalid">Submit</button>
+</form>
+
+<br/>
+<div *ngIf="!strictForm.invalid">
+    {{strictForm.value | json}}
+</div>
+
+
+
+
+<br/><br/>
+
+<h5>Registe Reactive Forms</h5>
+
+<form [formGroup]="registerForm" (ngSubmit)="submitRegisterForm()">
+    <input formControlName="email" type="email" placeholder="Email" />
+    <span *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched" style="color:red">
+        <small *ngIf="registerForm.get('email')?.errors?.['required']">Username is required</small>
+        <small *ngIf="registerForm.get('email')?.errors?.['email']">Username should be email</small>
+    </span>
+    <br/>
+    <input formControlName="password" type="password" placeholder="Password" />
+    <span *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched" style="color:red">
+        <small *ngIf="registerForm.get('password')?.errors?.['required']">Password is required.</small>
+        <small *ngIf="registerForm.get('password')?.errors?.['minlength']">Password should be 6 length.</small>
+    </span>
+    <br/>
+    <input formControlName="confirmPassword" type="password" placeholder="Confirm Password" />
+    <span *ngIf="registerForm.get('confirmPassword')?.invalid && registerForm.get('confirmPassword')?.touched" style="color: red;">
+        <small *ngIf="registerForm.get('confirmPassword')?.errors?.['required']">Confirm password is required</small>
+        <small *ngIf="registerForm.get('confirmPassword')?.errors?.['minlength']">Confirm password should be 6 length</small>
+    </span>
+    <br/>
+    <button>Register</button>
+</form>
+
+<br/>
+<br/>
+<h5>reactive-forms works!</h5>
+
+<form [formGroup]="studentForm" (ngSubmit)="submitStundent()">
+    <label>
+        Name : <input formControlName="name" type="text">
+        <span *ngIf="studentForm.get('name')?.invalid && studentForm.get('name')?.touched" style="color: red;">
+            <small>Enter your name</small>
+        </span>
+    </label>
+    <br/>
+    <label>
+        Email : <input formControlName="email" type="email">
+    </label>
+    <br/>
+    <label>
+        Mob : <input formControlName="number" type="number">
+    </label>
+    <br/>
+    <label>
+        <input type="radio" formControlName="gender" name="gender" value="male"> Male
+    </label>
+    <label>
+        <input type="radio" formControlName="gender" name="gender" value="female"> Female
+    </label>
+    <br/>
+    <label>
+        <input formControlName="stream" value="BA" type="checkbox"> BA
+    </label>
+    <label>
+        <input formControlName="stream" value="BCA" type="checkbox"> BCA
+    </label>
+    <label>
+        <input formControlName="stream" value="BBA" type="checkbox"> BBA
+    </label>
+    <label>
+        <input formControlName="stream" value="CA" type="checkbox"> CA
+    </label>
+    <label>
+        <input formControlName="stream" value="MCA" type="checkbox"> MCA
+    </label>
+    <br/>
+    <label>
+        <select formControlName="year">
+            <option>2002</option>
+            <option>2003</option>
+            <option>2004</option>
+            <option>2005</option>
+        </select>
+    </label>
+    <br/>
+    <button>Submit</button>
+</form>
+
+<br/><br/>
+    <div *ngFor="let item of studentValue">
+        <p>Name : {{item.name}}</p>
+        <p>Email : {{item.email}}</p>
+        <p>Mob : {{item.number}}</p>
+        <p>Gender : {{item.gender}}</p>
+        <p>Stream : {{item.stream}}</p>
+        <p>Year : {{item.year}}</p>
+        <hr/>
+    </div>
+
+

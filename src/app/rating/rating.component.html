@@ -1,0 +1,25 @@
+<p>rating works!</p>
+<div class="star-frame">
+    <span class="star" [ngClass]="ratingVal > 0 ? 'selected' : null" (click)="giveRating(1)"></span>
+    <span class="star" [ngClass]="ratingVal > 1 ? 'selected' : null" (click)="giveRating(2)"></span>
+    <span class="star" [ngClass]="ratingVal > 2 ? 'selected' : null" (click)="giveRating(3)"></span>
+    <span class="star" [ngClass]="ratingVal > 3 ? 'selected' : null" (click)="giveRating(4)"></span>
+    <span class="star" [ngClass]="ratingVal > 4 ? 'selected' : null" (click)="giveRating(5)"></span>
+</div>
+
+<p *ngIf="!!ratingVal">Yout have given {{ratingVal}} Star Rating</p>
+
+<br/><br/>
+
+<!-- <div class="star-frame">
+    <span class="star1"
+        *ngFor="let item of stars; let i=index;"
+        (mouseenter)="onHover(i)"
+        (mouseleave)="onLeave()"
+        (click)="onSelect(i)"
+        [ngClass]="{ 'selected': i <= hoverStar || i <= selectedStar - 1 }"
+    >
+    </span>
+</div>
+
+<p *ngIf="!!selectedStar">Yout have given {{selectedStar}} Star Rating</p> -->

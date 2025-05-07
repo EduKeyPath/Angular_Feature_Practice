@@ -1,0 +1,13 @@
+
+{{dataFromChild}}
+
+<br>
+
+<app-child [inputData]="data" (fetchDatafromChild)="getData($event)">
+    <h3>App Child Heading 3</h3>
+    <p>App Child content which is projected</p>
+</app-child>
+
+<button (click)="updateChildData()">updateChildData</button>
+<br/>
+<button (click)="changeBgColor()">Change BG Color</button>

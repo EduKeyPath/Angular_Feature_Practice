@@ -1,0 +1,26 @@
+<p>service-comp works!</p>
+
+<form #postData="ngForm" (ngSubmit)="postDataSubmit(postData)">
+
+    <input type="text" [(ngModel)]="user.name" name="name" required />
+
+    <button [disabled]="postData.invalid">Submit</button>
+</form>
+
+<ng-container *ngIf="res.length > 0">
+    <div *ngFor="let item of res; let i = index;">
+        <b>User Id:</b> {{item.id}} <br/>
+        <b>Name:</b> {{item.name}} <br/>
+    </div>
+</ng-container>
+
+<br/>
+<ul><!-- let item of apiData | async -->
+    <li *ngFor="let item of apiData; let i = index;" style="margin-bottom: 10px;">
+        <b>User Id:</b> {{i+1}} <br/>
+        <b>Title:</b> {{item.title}} <br/>
+        <b>Details:</b> {{item.body}}
+    </li>
+</ul>
+
+

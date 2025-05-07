@@ -1,0 +1,14 @@
+<p>query-route-params works!</p>
+<button [routerLink]="['/QueryParams/']" [queryParams]="{name:'Banty',id:30}">Click for Query Params</button>
+
+<br><br>
+
+<button (click)="goToQueryParams()">Click for Query Params</button>
+
+<br/><br/>
+
+<button [routerLink]="['/RouteParams/', 49]">Click for router Params</button>
+
+<br/><br/>
+
+<button (click)="goToRouteParams()">Click for router Params</button>

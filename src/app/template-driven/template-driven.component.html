@@ -1,0 +1,195 @@
+<!-- Ng Switch -->
+<h4>Ng Switch</h4>
+
+<button (click)="changeView('light')">Light</button>
+<button (click)="changeView('fan')">Fan</button>
+<button (click)="changeView('tv')">Tv</button>
+
+<div [ngSwitch]="currentSwitch">
+    <div *ngSwitchCase="'light'">Ligh Onn</div>
+    <div *ngSwitchCase="'fan'">Fan Onn</div>
+    <div *ngSwitchCase="'tv'">TV Onn</div>
+</div>
+
+<br>
+
+<!-- template  -->
+<h4>Ng template</h4>
+
+<button (click)="toggleTemplate()">toggleTemplate</button>
+
+<div *ngIf="templateDiv; else notemplate">
+    toggle Template Div if
+</div>
+
+<ng-template #notemplate>
+    no Templaw
+</ng-template>
+
+<br>
+
+
+
+
+<!-- Add more -->
+<h4>Add more item</h4>
+<form #addMore="ngForm" (ngSubmit)="adMoreSubmit(addMore)">
+    <div *ngFor="let item of itemList; let i = index;">
+        <label for="item-{{i}}">
+            Item{{i+1}}: &nbsp;&nbsp;
+            <input type="text" id="item-{{i}}" [(ngModel)]="item.name" name="item-{{i}}" required  />
+            &nbsp;&nbsp;
+            <button *ngIf="itemList.length > 1"  (click)="removeMoreItem(i)">X</button>
+        </label>
+    </div>
+    <br/>
+    <button type="button" (click)="addItem()">Add</button>
+    <br/>
+    <br/>
+    <button [disabled]="addMore.invalid">Submit</button>
+</form>
+
+<h4>Add more preview</h4>
+{{addMore.value | json}}
+
+<br/><br/>
+<br/><br/>
+
+<!-- Input Text -->
+<h4>Input Text</h4>
+<input type="text" [(ngModel)]="val1" (keyup)="calc()">
+<input type="text" [(ngModel)]="val2" (keyup)="calc()">
+<input type="text" [(ngModel)]="val3" [disabled]="val3disa">
+
+<br/><br/>
+
+<!-- Checkbox -->
+<h4>Checkbox</h4>
+<fieldset>
+    <legend>Choose Color</legend>
+    <label><input type="checkbox" (change)="selectColor()" [(ngModel)]="colors.red" name="red" value="Red"> Red</label>
+    <label><input type="checkbox" (change)="selectColor()" [(ngModel)]="colors.green" name="green" value="Green"> Green</label>
+    <label><input type="checkbox" (change)="selectColor()" [(ngModel)]="colors.blue" name="blue" value="Blue"> Blue</label>
+    <label><input type="checkbox" (change)="selectColor()" [(ngModel)]="colors.black" name="black" value="Black"> Black</label>
+    <label><input type="checkbox" (change)="selectColor()" [(ngModel)]="colors.white" name="white" value="White"> White</label>
+</fieldset>
+
+<br/><br/>
+<!-- Checkbox -->
+<h4>Select</h4>
+<select [(ngModel)]="optionVal" (change)="chooseOption()">
+    <option value="Value1">Value1</option>
+    <option value="Value2">Value2</option>
+    <option value="Value3">Value3</option>
+    <option value="Value4">Value4</option>
+    <option value="Value5">Value5</option>
+</select>
+<br/>
+<p>You are selected {{optionVal}}</p>
+
+
+<br/><br/>
+<!-- Radio -->
+<h4>Radio</h4>
+    <label><input type="radio" (change)="valChange()" [(ngModel)]="favoriteColor" name="favoriteColor" value="Red"> Red</label>
+    <label><input type="radio" (change)="valChange()" [(ngModel)]="favoriteColor" name="favoriteColor" value="Green"> Green</label>
+    <label><input type="radio" (change)="valChange()" [(ngModel)]="favoriteColor" name="favoriteColor" value="Blue"> Blue</label>
+
+    <div *ngIf="Red">
+        <p>Red List1</p>
+    </div>
+
+    <div *ngIf="Green">
+        <p>Green List2</p>
+    </div>
+
+    <div *ngIf="Blue">
+        <p>Blue List2</p>
+    </div>
+
+
+<!-- To Do List -->
+<h4>To Do List</h4>
+<form #toDoForm="ngForm" (ngSubmit)="add(toDoForm)">
+    <label>Add Item</label>
+    <input type="text" [(ngModel)]="todo.item" name="item" />
+    <button>Add</button>
+</form>
+
+<div class="card">
+    <ol>
+        <li class="list-item" *ngFor="let item of todoList; let i=index;">
+            {{item}}
+            <button class="btn btn-outlinr" (click)="removeItem(i)">X</button>
+        </li>
+    </ol>
+</div>
+
+
+
+<!-- Add data in a table -->
+<h4>Add data in a table</h4>
+<form #userForm="ngForm" (ngSubmit)="userSubmit(userForm)">
+    <div>
+        <label>Id</label>
+        <input type="number" [(ngModel)]="user.id" name="id" required />
+    </div>
+    <div>
+        <label>Name</label>
+        <input type="text" [(ngModel)]="user.fullname" #fullname="ngModel" name="fullname" required />
+        <div *ngIf="fullname.invalid && fullname.touched" style="color: red;">
+            <p *ngIf="fullname.errors?.['required']">Name is required</p>
+        </div>
+    </div>
+    <div>
+        <label><input type="radio" [(ngModel)]="user.gender" name="gender" value="Red"> Red</label>
+        <label><input type="radio" [(ngModel)]="user.gender" name="gender" value="Green"> Green</label>
+    </div>
+    <div>
+        <label>Date</label>
+        <input type="date" [(ngModel)]="user.date" name="date" />
+    </div>
+    <div>
+        <label>Email</label>
+        <input type="email" [(ngModel)]="user.email" #email="ngModel" name="email" required />
+        <span *ngIf="email.invalid && email.touched" style="color: red;">
+            <small *ngIf="email.errors?.['required']">Email is required</small>
+        </span>
+    </div>
+    <div>
+        <label>Mobile</label>
+        <input type="number" [(ngModel)]="user.mobile" #mobile="ngModel" name="mobile" minlength="10" required />
+        <div *ngIf="mobile.invalid && mobile.touched" style="color: red;">
+            <p *ngIf="mobile.errors?.['required']">Mobile no is required</p>
+            <p *ngIf="mobile.errors?.['minlength']">Mobile no should 10 digit</p>
+        </div>
+    </div>
+    <div>
+        <label>Details</label>
+        <textarea [(ngModel)]="user.details" #details="ngModel" name="details"></textarea>
+    </div>
+    <button [disabled]="userForm.invalid">Submit</button>
+</form>
+
+<table *ngIf="userList.length > 0" class="table table-bordered">
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Date</th>
+        <th>Email</th>
+        <th>Mobile</th>
+        <th>Details</th>
+        <th>Action</th>
+    </tr>
+    <tr *ngFor="let item of userList; let i = index;">
+        <td>{{item.id}}</td>
+        <td>{{item.fullname}}</td>
+        <td>{{item.date}}</td>
+        <td>{{item.email}}</td>
+        <td>{{item.mobile}}</td>
+        <td>{{item.details}}</td>
+        <td>
+            <button type="button" (click)="clearData(item.id)">Clear</button>
+        </td>
+    </tr>
+</table>

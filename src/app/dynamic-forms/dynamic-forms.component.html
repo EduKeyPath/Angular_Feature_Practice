@@ -1,0 +1,19 @@
+<h4>dynamic-forms works!</h4>
+
+<form [formGroup]="dynamicForm" (ngSubmit)="dynamicFormSubmit()">
+    <ng-container *ngFor="let item of fileds.formdFileds">
+        <div>
+            <label for="{{item.id}}">{{item.label}}</label>
+            <input 
+                type="{{item.type}}" 
+                id="{{item.id}}"
+                formControlName="{{item.id}}"
+                [placeholder]="item.placeholder ?? ''"
+                [min]="item.min ?? ''"
+                [max]="item.max ?? ''"
+            />
+        </div>
+    </ng-container>
+    <button>{{fileds.submitLabel}}</button>
+</form>
+

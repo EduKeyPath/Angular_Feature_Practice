@@ -1,0 +1,10 @@
+<p #highlight>Data From Parent</p>
+{{dataFromParent}} <br/>
+<button (click)="sendData(childData)">Send Data to Parent</button>
+<br/>
+<button type="button" (click)="highLight()">Highlight the text</button>
+
+
+<ng-content select="h3"></ng-content>
+<ng-content select="p"></ng-content>
+

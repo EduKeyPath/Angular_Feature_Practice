@@ -1,0 +1,14 @@
+<h4>file-upload works!</h4>
+<form #fileUpload="ngForm" (ngSubmit)="uploadFilesSubmit()">
+    <label>
+        Select File : 
+        <input type="file" (change)="selectFile($event)" multiple />
+    </label>
+    <button [disabled]="selectedFile.length === 0">Upload Files</button>
+</form>
+
+<div *ngIf="selectedFile.length > 0">
+    <ul>
+        <li *ngFor="let item of selectedFile">{{item.name}}</li>
+    </ul>
+</div>

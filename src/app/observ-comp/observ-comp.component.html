@@ -1,0 +1,26 @@
+<button (click)="updateSubjectObservabel()">Update Subject Observabel</button>
+<button (click)="updateBehaviourSubjectObservabel()">Update Behavior Subject Observabel</button>
+<button (click)="updateReplaySubjectObservabel()">Update Replay Subject Observabel</button>
+<br/><br/>
+
+<button (click)="subscribeData()">Subscribe</button>  
+<button (click)="unSubscribeData()">Unsubscribe</button>
+
+
+<h4>Subject data</h4>
+<ul>
+    <li *ngFor="let item of subjectData">{{item}}</li>
+</ul>
+
+<br/><br/>
+<h4>Behaviour Subject data</h4>
+<ul>
+    <li *ngFor="let item of behaviourSubjectData">{{item}}</li>
+</ul>
+<br/><br/>
+
+<h4>ReplaySubject data</h4>
+<ul>
+    <li *ngFor="let item of replaySubjectData">{{item}}</li>
+</ul>
+

@@ -1,0 +1,41 @@
+<p>pipe-custom-pipe works!</p>
+<p>{{itemNumber | customMultiply: 5}}</p>
+
+<p>{{fulldate | date}}</p>
+
+<p>{{fullName | uppercase}}</p>
+
+<p>{{camelCasePipes | camelPipe}}</p>
+
+<br/>
+<h4>Sorting List</h4>
+<table cellpadding="5" cellspacing="5">
+    <tr>
+        <th>Sr no</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Mobile</th>
+    </tr>
+    <tr>
+        <th><button (click)="sortData('id')">Sort</button></th>
+        <th><button (click)="sortData('name')">Sort</button></th>
+        <th><button (click)="sortData('email')">Sort</button></th>
+        <th><button (click)="sortData('mobile')">Sort</button></th>
+    </tr>
+    <tr *ngFor="let sortitem of unsortedList;">
+        <td>{{sortitem.id}}</td>
+        <td>{{sortitem.name}}</td>
+        <td>{{sortitem.email}}</td>
+        <td>{{sortitem.mobile}}</td>
+    </tr>
+</table>
+
+
+
+<br/>
+<label>
+    Search Name : <input type="text" [(ngModel)]="search" name="search" id="">
+</label>
+<ul>
+    <li *ngFor="let item of itemList | filterPipe:search">{{item.name}}</li>
+</ul>

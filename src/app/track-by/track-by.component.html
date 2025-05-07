@@ -1,0 +1,51 @@
+<p>track-by works!</p>
+
+<button (click)="addData()">Add Data</button>
+
+<br/>
+<table cellpadding="5" cellspacing="5">
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Marks</th>
+        <th>Status</th>
+    </tr>
+    <tr *ngFor="let item of studentList; let i=index; trackBy:trackById">
+        <td>
+            {{item.id}}
+        </td>
+        <td>
+            {{item.name}} <br/>
+            <ng-container *ngIf="editingId === item.id">
+                <input type="text" [(ngModel)]="item.name" style="width: 100px;" />
+            </ng-container>
+        </td>
+        <td [ngClass]="item.marks < 50 ? 'fail' : 'pass'">
+            {{item.marks}} <br/>
+            <ng-container *ngIf="editingId === item.id">
+                <input type="text" [(ngModel)]="item.marks" style="width: 100px;" />
+            </ng-container>
+        </td>
+        <td [ngStyle]="{'color': item.marks < 50 ? 'red' : 'green'}">
+            {{item.marks }}<!-- | status -->
+        </td>
+        <td>
+            <button (click)="removeStudent(i)">Remove</button> &nbsp; &nbsp;
+            <button (click)="editData(item.id)">Edit</button> &nbsp; &nbsp;
+            <button (click)="updateData()">Update</button> &nbsp; &nbsp;
+            <button (click)="cancelEdit()">Cancel</button> &nbsp; &nbsp;
+            <button (click)="addToCart(item)">Add to Cart</button>
+        </td>
+    </tr>
+</table>
+
+
+<br/>
+<br/>
+
+<h4>Cart List</h4>
+<ul *ngIf="cartList.length > 0">
+    <li *ngFor="let item of cartList">
+        {{item.name}}, {{item.marks}}
+    </li>
+</ul>
